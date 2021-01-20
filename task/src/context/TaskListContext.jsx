@@ -1,11 +1,16 @@
 import React, {useState,createContext} from 'react';
+import uuid from 'uuid'
  export const TaskListContext = createContext();
-const TaskListContextProvider = () => {
+export const TaskListContextProvider = (props) => {
       const [tasks, setTasks]= useState([
-            { task:'Workout',id:1 },
-            { task:'code',id:2 },
-            { task:'coffe',id:2 }
-          ]);
-    return <div>Task li</div>
+            { title:'Workout',id:1 },
+            { title:'code',id:2 },
+            { title:'coffe',id:3 }
+          ]),
+          addTask =(title)=>setTasks([...tasks,{title,id:uuid()}])
+    return (
+    <TaskListContext.Provider value={tasks,addTask}>
+          {props.childern}
+    </TaskListContext.Provider>)
 }
 export default TaskListContextProvider;
