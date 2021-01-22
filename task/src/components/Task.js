@@ -1,12 +1,13 @@
-import React from 'react';
-const Task = ({task}) =>
-{
+import React ,{ useContext }from 'react';
+import { TaskListContext } from '../context/TaskListContext';
+const Task = () =>{
+    const {removeTask,task } = useContext(TaskListContext)
     return(<>
      <div>
          <li>
              <span>{task.title}</span>
              <button>edit</button>
-             <button>delete</button>
+             <button onClick={() => removeTask(task.id)}>delete</button>
          </li>
      </div>
     </>)
